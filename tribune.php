@@ -25,31 +25,51 @@
                 width: 100%;
                 justify-content: space-between;
             }
+            img{
+                width:100%;
+                height:100px;
+            }
 
         </Style>
 
     </head>
     <body>
         <?php 
+        
         $xml = simplexml_load_file('https://tribune.com.pk/feed/latest.xml');
+
+     
+        
+
                         echo'<h2>' . $xml->channel->title . '</h2>';
-
-
-                        
 
         ?>
 
-
-
-
-          
+     
         <div class="card" >
                 <div class="card-body">
-                     <?php
-                        
+                     
+                        <?php
+                     //($xml->channel->item[0]->image->img);
+                     
+
                         foreach ($xml->channel->item as $item) {
-                            echo'<p><a href="'.$item->link.'">' . $item->title . "</a><br>" . $item->description . "</p>";
+                            echo'<p><img src="' . $item[0]->image->img['src'] . '" alt=" image" ><a href="'.$item->link.'">' . $item->title . "</a><br>" . $item->description . "      </p>";
+                            //echo '<p><img src="' . $item[0]->image->img['src'] . '" alt=" image" ></p>';
+
+
+                            
+
+
+
                         }
+                        
+                        
+
+
+                        
+
+
                         ?>
                     
                 </div>
